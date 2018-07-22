@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*--------------GET---------------*/
+Route::get('/', 'AlunosController@Index');
+Route::get('lista', 'AlunosController@Index');
+Route::get('cadastro', 'AlunosController@Cadastro');
+Route::get('{id}/editar', 'AlunosController@Editar');
+
+/*-------------PACTH--------------*/
+Route::patch('alunos/atualizar/{aluno}', 'AlunosController@Atualizar');
+
+/*--------------POST--------------*/
+Route::post('alunos/salvar', 'AlunosController@Salvar');
