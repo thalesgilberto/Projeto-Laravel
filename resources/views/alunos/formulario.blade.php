@@ -1,9 +1,10 @@
 @if(Request::is('*/editar'))
 <h4>Editar Aluno: {{ $aluno->nome }}</h4>
-{!! Form::model($aluno, ['method'=>'PACTH', 'url' => ['alunos/atualizar']]) !!}
+{!! Form::model($aluno, ['method'=>'PACTH', 'action' => ['AlunosController@Atualizar', $aluno->id]]) !!}
+@method('PATCH')
 @else
 <h4>Cadastrar de Aluno</h4>
-{!! Form::open(['action'=>'AlunosController@Salvar', 'method' => 'post']) !!}
+{!! Form::open(['action'=>'AlunosController@Salvar', 'method' => 'POST']) !!}
 @endif
 <div>      
         @if(Session::has('sucesso'))
@@ -42,7 +43,7 @@
     </div>
     <br>
     <div>
-            {!! Form::submit('Cadastrar') !!}
+            {!! Form::submit('Salvar') !!}
     </div>
     <br>
     <div>

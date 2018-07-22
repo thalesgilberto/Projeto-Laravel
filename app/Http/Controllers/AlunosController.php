@@ -29,9 +29,17 @@ class AlunosController extends Controller
         return view('alunos.formulario',['aluno'=>$aluno]);
     }
 
+    public function Deletar($id){
+        $aluno = Aluno::findOrFail($id);
+        $aluno->delete();
+        \Session::flash('sucesso', 'Aluno deletado com sucesso!');
+        return Redirect::to('lista');
+    }
+
     public function Atualizar($id, Request $request){
         $aluno = Aluno::findOrFail($id);
         $aluno->update($request->all());
-        return view('alunos.formulario',['aluno'=>$aluno]);
+        \Session::flash('sucesso', 'Aluno atualizado com sucesso!');
+        return Redirect::to($aluno->id.'/editar');
     }
 }
